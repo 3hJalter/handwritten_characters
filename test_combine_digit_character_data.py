@@ -17,14 +17,14 @@ data_root = "D:\Code\Code\Workspace\Python\A_Z Handwritten Data\A_Z Handwritten 
 
 # Because the data is a csv file, using pandas library to read AZ characters dataset in the type of float 32
 # Store to variable "dataset"
-dataset = pd.read_csv(data_root).astype(np.float32)
+dataset = pd.read_csv(data_root).astype("float32")
 # Each particular image has separate into 785 columns (from 1 column label at first and 28*28 pixel)
 # Rename '0' column of "dataset" as "label"
-dataset.rename(columns = {'0': "label"}, inplace = True)
+dataset.rename(columns={'0': "label"}, inplace=True)
 
 # Dropped labels and captured the rest of 784 pixels of each image in "dataset" and passed it to "letter_x" variable
 # Axis = 1, drop with column (row if axis = 0)
-letter_x = dataset.drop("label", axis = 1)
+letter_x = dataset.drop("label", axis=1)
 # Captured the labels of "dataset" and passed it to "letter_y" variable
 letter_y = dataset["label"]
 # Load mnist data and set to "digit_train_x, digit_train_y", "digit_test_x, digit_test_y" variables
@@ -65,13 +65,13 @@ data = []
 for flatten in letter_x:
     # reshape "flatten" with 784 pattern pixels to 28 and 28 and 1 shape (three dimensional array)
     # store in "image" variable
-    image = np.reshape(flatten, (28,28,1))
+    image = np.reshape(flatten, (28, 28, 1))
     # using numpy.36 that reshape image is going to be append to "data" list  
     data.append(image)
 
 # Converted "data" list as a numpy array in the type of float 32
 # Store in "letter_data" variable
-letter_data = np.array(data, dtype = np.float32)
+letter_data = np.array(data, dtype=np.float32)
 # Assign label of A to Z handwritten data set into "letter_target"
 # Store in "letter_target" variable
 letter_target = letter_y
@@ -95,11 +95,11 @@ shuffled_data = shuffle(letter_data)
 ## Set row and columns to show data
 rows, cols = 10, 10
 ## Plot data using matplotlib
-plt.figure(figsize = (20,20))
+plt.figure(figsize=(20, 20))
 for i in range(rows * cols):
     plt.subplot(cols, rows, i+1)
-    plt.imshow(shuffled_data[i].reshape(28,28), interpolation = "nearest", cmap = "gray")
-plt.show();
+    plt.imshow(shuffled_data[i].reshape(28, 28), interpolation="nearest", cmap="gray")
+plt.show()
 
 ## shuffle and randomly picked 100 images from 0 to 9 hand written character data in "digit_data"
 ## Store in shuffled_data variable
@@ -107,16 +107,16 @@ shuffled_data = shuffle(digit_data)
 ## Set row and columns to show data
 rows, cols = 10, 10
 ## Plot data using matplotlib
-plt.figure(figsize = (20,20))
+plt.figure(figsize=(20, 20))
 for i in range(rows * cols):
     plt.subplot(cols, rows, i+1)
-    plt.imshow(shuffled_data[i].reshape(28,28), interpolation = "nearest", cmap = "gray")
+    plt.imshow(shuffled_data[i].reshape(28, 28), interpolation="nearest", cmap="gray")
 plt.show();
 
 # Concatenated "letter_data" and "digit_data" as "data"
-data = np.concatenate((letter_data, digit_data))
+data = np.concatenate((digit_data, letter_data))
 # Concatenated "letter_target" and "digit_target" as "target"
-target = np.concatenate((letter_target, digit_target))
+target = np.concatenate((digit_target, letter_target))
 
 ## Print out the shape of "data" and "target" data set
 print("\nAfter concatenate letter_data, digit_data and letter_target, digit_target (target = label)")
@@ -129,15 +129,14 @@ shuffled_data = shuffle(data)
 ## Set row and columns to show data
 rows, cols = 10, 10
 ## Plot data using matplotlib
-plt.figure(figsize = (20,20))
+plt.figure(figsize=(20, 20))
 for i in range(rows * cols):
     plt.subplot(cols, rows, i+1)
-    plt.imshow(shuffled_data[i].reshape(28,28), interpolation = "nearest", cmap = "gray")
+    plt.imshow(shuffled_data[i].reshape(28, 28), interpolation="nearest", cmap="gray")
 plt.show();
 
 # Split merge data set into train_data, test_data and train_labels, test_labels
-train_data, test_data, = train_test_split(data, test_size = 0.2)
-train_labels, test_labels = train_test_split(target, test_size = 0.2) 
+train_data, test_data, train_labels, test_labels = train_test_split(data, target, test_size=0.2)
 
 ## Print out the shape of "data" and "label" data set after split
 print("After split merge data set into train_data, test_data and train_labels, test_labels")
@@ -177,15 +176,15 @@ print(test_data.shape, test_labels.shape)
 
 ## plot the train and test distribution table
 ## Create counts variable for train and test label
-train_labels_counts = [0 for i in range(36)]
-test_labels_counts = [0 for i in range(36)]
+train_label_counts = [0 for i in range(36)]
+test_label_counts = [0 for i in range(36)]
 ## Count number of data in each label
 for i in range(train_data.shape[0]):
-    train_labels_counts[np.argmax(train_labels[i])] += 1
+    train_label_counts[np.argmax(train_labels[i])] += 1
 for i in range(test_data.shape[0]):
-    test_labels_counts[np.argmax(test_labels[i])] += 1
+    test_label_counts[np.argmax(test_labels[i])] += 1
 ## plot
-frequency = [train_labels_counts, test_labels_counts]
+frequency = [train_label_counts, test_label_counts] 
 
 fig =  plt.figure(figsize=(8, 6))
 ax = fig.add_axes([0, 0, 1, 1])
@@ -207,3 +206,6 @@ np.save("D:\Code\Code\Workspace\Python\A_Z Handwritten Data\\numpy\\train_data",
 np.save("D:\Code\Code\Workspace\Python\A_Z Handwritten Data\\numpy\\train_labels", train_labels)
 np.save("D:\Code\Code\Workspace\Python\A_Z Handwritten Data\\numpy\\test_data", test_data)
 np.save("D:\Code\Code\Workspace\Python\A_Z Handwritten Data\\numpy\\test_labels", test_labels)
+
+## Check
+print("Store successful")
