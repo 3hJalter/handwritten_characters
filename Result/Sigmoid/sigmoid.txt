@@ -1,0 +1,10 @@
+Epoch 1/5
+3540/3540 [==============================] - 24s 7ms/step - loss: 0.1486 - accuracy: 0.9593 - val_loss: 0.1138 - val_accuracy: 0.9671 - lr: 0.0010
+Epoch 2/5
+3540/3540 [==============================] - 26s 7ms/step - loss: 0.0984 - accuracy: 0.9717 - val_loss: 0.0909 - val_accuracy: 0.9742 - lr: 0.0010
+Epoch 3/5
+3540/3540 [==============================] - 23s 7ms/step - loss: 0.0833 - accuracy: 0.9757 - val_loss: 0.0852 - val_accuracy: 0.9747 - lr: 0.0010
+Epoch 4/5
+3540/3540 [==============================] - 26s 7ms/step - loss: 0.0736 - accuracy: 0.9781 - val_loss: 0.0773 - val_accuracy: 0.9768 - lr: 0.0010
+Epoch 5/5
+3540/3540 [==============================] - 26s 7ms/step - loss: 0.0664 - accuracy: 0.9799 - val_loss: 0.0718 - val_accuracy: 0.9790 - lr: 0.0010
